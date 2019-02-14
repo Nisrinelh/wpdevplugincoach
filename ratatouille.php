@@ -1,6 +1,7 @@
 <?php
 
 use App\Features\PostTypes\RecipePostType;
+use App\Features\Taxonomies\RecipeTaxonomy;
 
 /**
  * Plugin Name:     Ratatouille
@@ -30,3 +31,5 @@ require_once('autoload.php');
 
 // Ajout d'un listener à l'event "init". le listener est la méthode "register" de la class RecipePostType.
 add_action('init', [RecipePostType::class, 'register']);
+// Ajout d'un listener à l'event "init" pour enregistrer une taxonomy
+add_action('init', [RecipeTaxonomy::class, 'register']);
