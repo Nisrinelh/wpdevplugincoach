@@ -18,17 +18,8 @@ use App\Features\MetaBoxes\RecipeDetailsMetabox;
  */
 
 // Your code starts here.
-/**
- * Fonction pour ajouter un type de contenu recette
- * Ceci a été copier coller du site 
- * https://developer.wordpress.org/plugins/post-types/registering-custom-post-types/
- *
- * @return void
- *
- */
-
  // Import du autoload.php pour récuperer les class automatiquement sans devoir un require
 require_once('autoload.php');
 
  //lancement de l'application
-require_one('bootstrap.php');
+require_once('bootstrap.php');

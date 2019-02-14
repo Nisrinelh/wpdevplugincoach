@@ -74,3 +74,15 @@ function delete_post_metas($post_id)
     delete_post_meta($post_id, $key);
   }
 }
+
+/**
+ * renvoi le contenu d'un fichier de configuration
+ *
+ * @param [type] $conf
+ * @return void
+ */
+function config($conf)
+{
+  $file = RAT_CONFIG_DIR . $conf . ".php";
+  return include($file);
+}
