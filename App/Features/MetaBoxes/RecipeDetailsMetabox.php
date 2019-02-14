@@ -58,8 +58,8 @@ class RecipeDetailsMetabox
       // on ajoute sanitize pour sécurizer les valeurs receuilli par l'utilisateur
       // https://developer.wordpress.org/themes/theme-security/data-sanitization-escaping/
       $data = [
-        'rat_time_preparation' => sanitize_text_field($_POST['rat_time_preparation']),
-        'rat_person_number' => sanitize_text_field($_POST['rat_person_number'])
+        'rat_time_preparation' => post_data('rat_time_preparation', $_POST),
+        'rat_person_number' => post_data('rat_person_number', $_POST),
       ];
       // enregistrement de toutes les valeurs grâce au helper
       update_post_metas($post_id, $data);

@@ -32,6 +32,20 @@ function extract_data_attr(string $key, array $data)
 }
 
 /**
+ * fonction qui renvoi la data sécurisé si elle existe dans le tableau
+ *
+ * @param [type] $key la valeur du name dans le formulaire
+ * @param [type] $data le tableau dans lequel chercher ex: $_POST
+ * @return void
+ */
+function post_data($key, $data)
+{
+  if (array_key_exists($key, $data)) {
+    return sanitize_text_field($data[$key]);
+  }
+  return '';
+}
+/**
  * Enregistrement de toutes les valeurs du tableau en utilisant leur key comme meta key dans la base de donnée
  *
  * @param [type] $post_id id du post courant
@@ -43,5 +57,20 @@ function update_post_metas($post_id, $data)
   foreach ($data as $key => $value) {
     // https://developer.wordpress.org/reference/functions/update_post_meta/
     update_post_meta($post_id, $key, $value);
+  }
+}
+
+/**
+ * Suppression de toutes les meta d'un post
+ *
+ * @param [type] $post_id
+ * @return void
+ */
+function delete_post_metas($post_id)
+{
+  $metas = get_post_meta($post_id);
+
+  foreach ($metas as $key => $value) {
+    delete_post_meta($post_id, $key);
   }
 }
