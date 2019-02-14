@@ -2,6 +2,7 @@
 
 use App\Features\PostTypes\RecipePostType;
 use App\Features\Taxonomies\RecipeTaxonomy;
+use App\Features\MetaBoxes\RecipeDetailsMetabox;
 
 /**
  * Plugin Name:     Ratatouille
@@ -33,3 +34,5 @@ require_once('autoload.php');
 add_action('init', [RecipePostType::class, 'register']);
 // Ajout d'un listener à l'event "init" pour enregistrer une taxonomy
 add_action('init', [RecipeTaxonomy::class, 'register']);
+// Ajout d'une Metabox pour le postType recipe
+add_action('add_meta_boxes_recipe', [RecipeDetailsMetabox::class, 'add_meta_box']);
