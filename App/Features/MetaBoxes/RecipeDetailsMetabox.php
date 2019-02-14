@@ -48,7 +48,9 @@ class RecipeDetailsMetabox
   {
     // On verifie que $_POST ne soit pas vite pour effectuer l'action uniquement à la sauvegarde du post Type
     if (count($_POST) != 0) {
-      $time_preparation = $_POST['rat_time_preparation'];
+      // on ajoute sanitize pour sécurizer les valeurs receuilli par l'utilisateur
+      // https://developer.wordpress.org/themes/theme-security/data-sanitization-escaping/
+      $time_preparation = sanitize_text_field($_POST['rat_time_preparation']);
       // https://developer.wordpress.org/reference/functions/update_post_meta/
       update_post_meta($post_id, 'rat_time_preparation', $time_preparation);
     }
