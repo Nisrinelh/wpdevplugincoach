@@ -39,7 +39,7 @@ class RecipeDetailsMetabox
     // https://developer.wordpress.org/reference/functions/get_post_meta/
     $data = get_post_meta(get_the_ID());
     // Récupération et attribution des valeurs à utiliser pour la view
-    $time = $data['rat_time_preparation'][0];
+    $time = extract_data_attr('rat_time_preparation', $data);
     view('metaboxes/recipe-detail', compact('time'));
   }
 
