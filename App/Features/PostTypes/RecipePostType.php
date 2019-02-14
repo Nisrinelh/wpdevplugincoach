@@ -4,6 +4,7 @@ namespace App\Features\PostTypes;
 
 class RecipePostType
 {
+  public static $slug = 'recipe';
   /**
    * Enregistrement du type de contenu recipe
    *
@@ -13,7 +14,7 @@ class RecipePostType
   {
     // info sur la fonction https://developer.wordpress.org/reference/functions/register_post_type/
     register_post_type(
-      'recipe', // Le slug du type de contenu 
+      self::$slug, // Le slug du type de contenu 
       array(
         'labels' => array( // On récupere toutes les clés en allant sur la fonction "get_post_type_label()"
           'name' => __('Recette'),
