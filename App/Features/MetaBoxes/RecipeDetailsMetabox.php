@@ -35,7 +35,12 @@ class RecipeDetailsMetabox
    */
   public static function render()
   {
-    view('metaboxes/recipe-detail');
+    // Récupération de toutes les meta du post
+    // https://developer.wordpress.org/reference/functions/get_post_meta/
+    $data = get_post_meta(get_the_ID());
+    // Récupération et attribution des valeurs à utiliser pour la view
+    $time = $data['rat_time_preparation'][0];
+    view('metaboxes/recipe-detail', compact('time'));
   }
 
   /**
