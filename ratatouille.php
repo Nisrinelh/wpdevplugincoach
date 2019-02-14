@@ -29,7 +29,8 @@ use App\Features\MetaBoxes\RecipeDetailsMetabox;
 
 // Import du autoload.php pour récuperer les class automatiquement sans devoir un require
 require_once('autoload.php');
-
+// Ajout du fichier env.php pour les constantes global
+require_once('env.php');
 // Ajout d'un listener à l'event "init". le listener est la méthode "register" de la class RecipePostType.
 add_action('init', [RecipePostType::class, 'register']);
 // Ajout d'un listener à l'event "init" pour enregistrer une taxonomy

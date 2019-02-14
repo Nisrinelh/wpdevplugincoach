@@ -35,6 +35,6 @@ class RecipeDetailsMetabox
    */
   public static function render()
   {
-    echo "<h3>Hello</h3>";
+    include(RAT_VIEW_DIR . 'metaboxes/recipe-detail.html.php');
   }
 }
