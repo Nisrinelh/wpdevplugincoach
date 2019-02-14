@@ -16,4 +16,10 @@
       </select>
     </td>
   </tr>
+  <tr>
+    <th><?php _e("Nombre de personne"); ?></th>
+    <td>
+      <input type="number" name="rat_person_number" id="rat_person_number" value="<?php echo $num_person; ?>" >
+    </td>
+  </tr>
 </table>
