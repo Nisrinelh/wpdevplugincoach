@@ -30,3 +30,18 @@ function extract_data_attr(string $key, array $data)
   }
   return '';
 }
+
+/**
+ * Enregistrement de toutes les valeurs du tableau en utilisant leur key comme meta key dans la base de donnée
+ *
+ * @param [type] $post_id id du post courant
+ * @param [type] $data tableau de valeurs de la metabox
+ * @return void
+ */
+function update_post_metas($post_id, $data)
+{
+  foreach ($data as $key => $value) {
+    // https://developer.wordpress.org/reference/functions/update_post_meta/
+    update_post_meta($post_id, $key, $value);
+  }
+}

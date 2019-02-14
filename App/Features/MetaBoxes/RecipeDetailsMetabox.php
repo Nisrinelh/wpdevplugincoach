@@ -57,11 +57,12 @@ class RecipeDetailsMetabox
     if (count($_POST) != 0) {
       // on ajoute sanitize pour sécurizer les valeurs receuilli par l'utilisateur
       // https://developer.wordpress.org/themes/theme-security/data-sanitization-escaping/
-      $time_preparation = sanitize_text_field($_POST['rat_time_preparation']);
-      $num_person = sanitize_text_field($_POST['rat_person_number']);
-      // https://developer.wordpress.org/reference/functions/update_post_meta/
-      update_post_meta($post_id, 'rat_time_preparation', $time_preparation);
-      update_post_meta($post_id, 'rat_person_number', $num_person);
+      $data = [
+        'rat_time_preparation' => sanitize_text_field($_POST['rat_time_preparation']),
+        'rat_person_number' => sanitize_text_field($_POST['rat_person_number'])
+      ];
+      // enregistrement de toutes les valeurs grâce au helper
+      update_post_metas($post_id, $data);
     }
   }
 }
