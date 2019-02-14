@@ -37,4 +37,20 @@ class RecipeDetailsMetabox
   {
     view('metaboxes/recipe-detail');
   }
+
+  /**
+   * sauvegarde des donners de la métabox
+   *
+   * @param [type] $post_id reçu par le do_action
+   * @return void
+   */
+  public static function save($post_id)
+  {
+    // On verifie que $_POST ne soit pas vite pour effectuer l'action uniquement à la sauvegarde du post Type
+    if (count($_POST) != 0) {
+      $time_preparation = $_POST['rat_time_preparation'];
+      // https://developer.wordpress.org/reference/functions/update_post_meta/
+      update_post_meta($post_id, 'rat_time_preparation', $time_preparation);
+    }
+  }
 }
