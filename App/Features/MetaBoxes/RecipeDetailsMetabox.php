@@ -3,8 +3,9 @@
 namespace App\Features\MetaBoxes;
 
 use App\Features\PostTypes\RecipePostType;
+use App\Interfaces\MetaBoxInterface;
 
-class RecipeDetailsMetabox
+class RecipeDetailsMetabox implements MetaBoxInterface
 {
 
   public static $slug = 'recipe_details_metabox';
