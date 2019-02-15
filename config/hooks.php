@@ -3,6 +3,7 @@ use App\Features\PostTypes\PostTypeRegister;
 use App\Features\PostTypes\RecipePostType;
 use App\Features\MetaBoxes\RecipeDetailsMetabox;
 use App\Features\Taxonomies\TaxonomyRegister;
+use App\Features\Widgets\Widget;
 
 return [
 /**
@@ -19,6 +20,8 @@ return [
     ['save_post_' . RecipePostType::$slug, [RecipeDetailsMetabox::class, 'save']],
     // Ajout d'une action pour supprimé toutes les metas d'un post lorsque ce post est supprimé
     ['delete_post', 'delete_post_metas'],
+    // Ajout d'une action pour enregistrer les widgets
+    ['widgets_init', [Widget::class, 'init']],
   ],
 
 
