@@ -1,9 +1,5 @@
 <?php
 
-use App\Features\PostTypes\RecipePostType;
-use App\Features\Taxonomies\RecipeTaxonomy;
-use App\Features\MetaBoxes\RecipeDetailsMetabox;
-
 /**
  * Plugin Name:     Ratatouille
  * Plugin URI:      PLUGIN SITE HERE
