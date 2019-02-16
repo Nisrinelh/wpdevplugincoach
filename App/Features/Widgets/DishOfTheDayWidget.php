@@ -12,7 +12,6 @@ class DishOfTheDayWidget extends \WP_Widget
     'after_title' => '</h4>',
     'before_widget' => '<div class="widget-wrap">',
     'after_widget' => '</div></div>',
-    'self' => self::class
   );
 
   /**
