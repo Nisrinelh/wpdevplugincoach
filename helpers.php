@@ -34,8 +34,8 @@ function extract_data_attr(string $key, array $data)
 /**
  * fonction qui renvoi la data sécurisé si elle existe dans le tableau
  *
- * @param [type] $key la valeur du name dans le formulaire
- * @param [type] $data le tableau dans lequel chercher ex: $_POST
+ * @param  $key la valeur du name dans le formulaire
+ * @param  $data le tableau dans lequel chercher ex: $_POST
  * @return void
  */
 function post_data($key, $data)
@@ -74,3 +74,4 @@ function delete_post_metas($post_id)
     delete_post_meta($post_id, $key);
   }
 }
+
