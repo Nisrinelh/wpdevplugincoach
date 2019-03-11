@@ -1,8 +1,5 @@
 <?php
 
-use App\Features\PostTypes\RecipePostType;
-use App\Features\Taxonomies\RecipeTaxonomy;
-use App\Features\MetaBoxes\RecipeDetailsMetabox;
 
 /**
  * Plugin Name:     Ratatouille
@@ -27,8 +24,8 @@ use App\Features\MetaBoxes\RecipeDetailsMetabox;
  *
  */
 
- // Import du autoload.php pour récuperer les class automatiquement sans devoir un require
+// Import du autoload.php pour récuperer les class automatiquement sans devoir un require
 require_once('autoload.php');
 
- //lancement de l'application
-require_one('bootstrap.php');
+//lancement de l'application
+require_once('bootstrap.php');
