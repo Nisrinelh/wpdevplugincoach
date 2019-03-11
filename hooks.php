@@ -7,6 +7,8 @@ use App\Features\Taxonomies\RecipeTaxonomy;
 use App\Features\MetaBoxes\RecipeDetailsMetabox;
 use App\Features\Widgets\Widget;
 use App\Features\Sections\Section;
+use App\Features\Pages\Page;
+
 // Ajout d'un listener à l'event "init". le listener est la méthode "register" de la class RecipePostType.
 
 add_action('init', [RecipePostType::class, 'register']);
@@ -22,3 +24,5 @@ add_action('delete_post', 'delete_post_metas');
 add_action( 'widgets_init',[Widget::class,'init']);
 // Ajout d'une section dans la page reading (lecture) pour choisir le nombre de recette à afficher sur la home page
 add_action('admin_init',[Section::class,'init']);
+// Ajout d'un lien dans le menu qui mène vers une page personnalisé
+add_action('admin_menu',[Page::class,'init']);
