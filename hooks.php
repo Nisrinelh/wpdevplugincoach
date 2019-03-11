@@ -5,6 +5,7 @@
 use App\Features\PostTypes\RecipePostType;
 use App\Features\Taxonomies\RecipeTaxonomy;
 use App\Features\MetaBoxes\RecipeDetailsMetabox;
+use App\Features\Widgets\Widget;
 // Ajout d'un listener à l'event "init". le listener est la méthode "register" de la class RecipePostType.
 
 add_action('init', [RecipePostType::class, 'register']);
@@ -16,3 +17,5 @@ add_action('add_meta_boxes_recipe', [RecipeDetailsMetabox::class, 'add_meta_box'
 add_action('save_post_' . RecipePostType::$slug, [RecipeDetailsMetabox::class, 'save']);
 // Ajout d'une action pour supprimé toutes les metas d'un post lorsque ce post est supprimé
 add_action('delete_post', 'delete_post_metas');
+// Ajout d'une action pour enregistrer les widgets
+add_action( 'widgets_init',[Widget::class,'init']);
