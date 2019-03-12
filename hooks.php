@@ -8,6 +8,7 @@ use App\Features\MetaBoxes\RecipeDetailsMetabox;
 use App\Features\Widgets\Widget;
 use App\Features\Sections\Section;
 use App\Features\Pages\Page;
+use App\Features\Pages\SendMail;
 
 // Ajout d'un listener à l'event "init". le listener est la méthode "register" de la class RecipePostType.
 
@@ -21,8 +22,11 @@ add_action('save_post_' . RecipePostType::$slug, [RecipeDetailsMetabox::class, '
 // Ajout d'une action pour supprimé toutes les metas d'un post lorsque ce post est supprimé
 add_action('delete_post', 'delete_post_metas');
 // Ajout d'une action pour enregistrer les widgets
-add_action( 'widgets_init',[Widget::class,'init']);
+add_action('widgets_init', [Widget::class, 'init']);
 // Ajout d'une section dans la page reading (lecture) pour choisir le nombre de recette à afficher sur la home page
-add_action('admin_init',[Section::class,'init']);
+add_action('admin_init', [Section::class, 'init']);
 // Ajout d'un lien dans le menu qui mène vers une page personnalisé
-add_action('admin_menu',[Page::class,'init']);
+add_action('admin_menu', [Page::class, 'init']);
+// Ajout d'un action pour envoi de mail depuis l'admin
+add_action('admin_action_send-mail', [SendMail::class, 'send_mail']);
+

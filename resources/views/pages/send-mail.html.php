@@ -3,7 +3,7 @@
     <h1><?= get_admin_page_title(); ?></h1>
     <p>Ce formulaire vous permet de contacter vos clients pour leur réservation.</p>
     <!-- Vous pouvez trouver la documentation sur comment bien intégrer votre html à cette adresse https://dotorgstyleguide.wordpress.com/outline/forms/ -->
-    <form action="">
+    <form action="<?= get_admin_url() . '/?action=send-mail'; ?>" method="post">
         <table class="form-table">
             <tr>
                 <th>e-mail</th>
