@@ -74,4 +74,3 @@ function delete_post_metas($post_id)
     delete_post_meta($post_id, $key);
   }
 }
-
