@@ -40,6 +40,10 @@ class SendMail
    */
   public static function send_mail()
   {
+    // on vérifie la sécurité pour voir si le formulaire est bien authentique
+    if (!wp_verify_nonce($_POST['_wpnonce'], 'send-mail')) {
+      return;
+    };
     // Nous récupérons les données envoyé par le formulaire qui se retrouve dans la variable $_POST
     $email = sanitize_email($_POST['email']);
     $name = sanitize_text_field($_POST['name']);

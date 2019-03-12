@@ -7,6 +7,8 @@
     <p>Ce formulaire vous permet de contacter vos clients pour leur réservation.</p>
     <!-- Vous pouvez trouver la documentation sur comment bien intégrer votre html à cette adresse https://dotorgstyleguide.wordpress.com/outline/forms/ -->
     <form action="<?= get_admin_url() . '/?action=send-mail'; ?>" method="post">
+        <!-- Cette fonction permet un sécurité pour vérifier que le formulaire est authentique -->
+        <?php wp_nonce_field('send-mail'); ?>
         <table class="form-table">
             <tr>
                 <th>e-mail</th>
