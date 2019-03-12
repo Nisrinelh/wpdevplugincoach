@@ -18,7 +18,6 @@ class Request
     foreach ($data as $input => $verification) {
       call_user_func([self::class, $verification], $input);
     }
-    unset($_SESSION['error']);
     if (count(self::$errors) != 0) {
       $message = "";
       foreach (self::$errors as $key => $value) {
