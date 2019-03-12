@@ -30,6 +30,6 @@ class SendMail
    */
   public static function render()
   {
-    echo "hello dude";
+    view('pages/send-mail');
   }
 }
