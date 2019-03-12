@@ -12,19 +12,19 @@
         <table class="form-table">
             <tr>
                 <th>e-mail</th>
-                <td><input type="email" name="email" id="email"></td>
+                <td><input type="email" name="email" id="email" value="<?= $old['email']; ?>"></td>
             </tr>
             <tr>
                 <th>Nom</th>
-                <td><input type="text" name="name" id="name"></td>
+                <td><input type="text" name="name" id="name" value="<?= $old['name']; ?>"></td>
             </tr>
             <tr>
                 <th>Prénom</th>
-                <td><input type="text" name="firstname" id="firstname"></td>
+                <td><input type="text" name="firstname" id="firstname" value="<?= $old['firstname']; ?>"></td>
             </tr>
             <tr>
                 <th>Message</th>
-                <td><textarea name="message" id="message" cols="30" rows="10"></textarea></td>
+                <td><textarea name="message" id="message" cols="30" rows="10"><?= $old['message']; ?></textarea></td>
             </tr>
             <tr>
                 <th></th>

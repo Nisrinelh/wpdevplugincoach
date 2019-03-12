@@ -33,7 +33,11 @@ class SendMail
    */
   public static function render()
   {
-    view('pages/send-mail');
+    if (isset($_SESSION['old'])) {
+      $old = $_SESSION['old'];
+      unset($_SESSION['old']);
+    }
+    view('pages/send-mail', compact('old'));
   }
 
   /**

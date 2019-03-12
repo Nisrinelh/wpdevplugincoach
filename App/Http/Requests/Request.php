@@ -17,6 +17,8 @@ class Request
     // pour chaque entré on vérifie que la vérification (qui est une méthode) est appliqué.
     foreach ($data as $input => $verification) {
       call_user_func([self::class, $verification], $input);
+      // On prépare un tableau pour pouvoir renvoyer les valeurs précédente afin de ne pas devoir les réécrire.
+      $_SESSION['old'][$input] = $_POST[$input];
     }
     if (count(self::$errors) != 0) {
       $message = "";
@@ -27,6 +29,7 @@ class Request
         'status' => 'error',
         'message' => $message
       ];
+
       wp_safe_redirect(wp_get_referer());
       exit;
     }
