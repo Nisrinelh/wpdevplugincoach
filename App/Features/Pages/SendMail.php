@@ -49,6 +49,10 @@ class SendMail
     // la fonction wordpress pour envoyer des mails https://developer.wordpress.org/reference/functions/wp_mail/
     wp_mail($email, 'Pour ' . $name . ' ' . $firstname, $message);
 
+    $_SESSION['notice'] = [
+      'status' => 'success',
+      'message' => 'votre e-mail a bien été envoyé'
+    ];
     // la fonction wp_safe_redirect redirige vers une url. La fonction wp_get_referer renvoi vers la page d'ou la requête a été envoyé.
     wp_safe_redirect(wp_get_referer());
   }
