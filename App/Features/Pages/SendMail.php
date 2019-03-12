@@ -41,10 +41,10 @@ class SendMail
   public static function send_mail()
   {
     // Nous récupérons les données envoyé par le formulaire qui se retrouve dans la variable $_POST
-    $email = $_POST['email'];
-    $name = $_POST['name'];
-    $firstname = $_POST['firstname'];
-    $message = $_POST['message'];
+    $email = sanitize_email($_POST['email']);
+    $name = sanitize_text_field($_POST['name']);
+    $firstname = sanitize_text_field($_POST['firstname']);
+    $message = sanitize_textarea_field($_POST['message']);
 
     // la fonction wordpress pour envoyer des mails https://developer.wordpress.org/reference/functions/wp_mail/
     wp_mail($email, 'Pour ' . $name . ' ' . $firstname, $message);
