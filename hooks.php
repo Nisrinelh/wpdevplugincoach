@@ -8,8 +8,8 @@ use App\Features\MetaBoxes\RecipeDetailsMetabox;
 use App\Features\Widgets\Widget;
 use App\Features\Sections\Section;
 use App\Features\Pages\Page;
-use App\Features\Pages\SendMail;
 use App\Setup;
+use App\Http\Controllers\MailController;
 
 // Ajout d'un listener à l'event "init". le listener est la méthode "register" de la class RecipePostType.
 
@@ -29,6 +29,6 @@ add_action('admin_init', [Section::class, 'init']);
 // Ajout d'un lien dans le menu qui mène vers une page personnalisé
 add_action('admin_menu', [Page::class, 'init']);
 // Ajout d'un action pour envoi de mail depuis l'admin
-add_action('admin_action_send-mail', [SendMail::class, 'send_mail']);
+add_action('admin_action_send-mail', [MailController::class, 'send']);
 // On ajoute une session afin de pouvoir utiliser la variable $_SESSION;
 add_action('admin_init', [Setup::class, 'start_session']);
