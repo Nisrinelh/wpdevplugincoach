@@ -25,28 +25,22 @@ class MailController
       'message' => 'required'
     ]);
 
-    // Nous récupérons les données envoyé par le formulaire qui se retrouve dans la variable $_POST
-    $email = sanitize_email($_POST['email']);
-    $name = sanitize_text_field($_POST['name']);
-    $firstname = sanitize_text_field($_POST['firstname']);
-    $message = sanitize_textarea_field($_POST['message']);
-
     // Nous allons également sauvegarder en base de donnée les mails que nous allons envoyer.
     // Refactoring pour apprendre et utiliser les models. Seul les models peuvent intéragir avec la base de donnée.
     // on instancie la class Mail et on rempli les valeurs dans les propriétés.
     $mail = new Mail();
 
     $mail->userid = get_current_user_id();
-    $mail->lastname = $name;
-    $mail->firstname = $firstname;
-    $mail->email = $email;
-    $mail->content = $message;
+    $mail->lastname = sanitize_text_field($_POST['name']);
+    $mail->firstname = sanitize_text_field($_POST['firstname']);
+    $mail->email = sanitize_email($_POST['email']);
+    $mail->content = sanitize_textarea_field($_POST['message']);
     // Sauvegarde du mail dans la base de donnée
     $mail->save();
 
 
     // la fonction wordpress pour envoyer des mails https://developer.wordpress.org/reference/functions/wp_mail/
-    if (wp_mail($email, 'Pour ' . $name . ' ' . $firstname, $message)) {
+    if (wp_mail($mail->email, 'Pour ' . $mail->name . ' ' . $mail->firstname, $mail->message)) {
       $_SESSION['notice'] = [
         'status' => 'success',
         'message' => 'votre e-mail a bien été envoyé'
@@ -105,13 +99,14 @@ class MailController
         'status' => 'success',
         'message' => 'Le mail a bien été supprimé'
       ];
-      self::index();
+      wp_safe_redirect(menu_page_url('mail-client', false));
+      // self::index();
     } else {
       $_SESSION['notice'] = [
         'status' => 'error',
         'message' => 'un Problème est survenu, veuillez rééssayer'
       ];
-      wp_redirect(wp_get_referer());
+      wp_safe_redirect(wp_get_referer());
     }
   }
 }

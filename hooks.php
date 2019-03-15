@@ -31,6 +31,8 @@ add_action('admin_init', [Section::class, 'init']);
 add_action('admin_menu', [Page::class, 'init']);
 // Ajout d'un action pour envoi de mail depuis l'admin
 add_action('admin_action_send-mail', [MailController::class, 'send']);
+// Ajout d'un action pour suppression d'un mail depuis l'admin
+add_action('admin_action_mail-delete', [MailController::class, 'delete']);
 // On ajoute une session afin de pouvoir utiliser la variable $_SESSION;
 add_action('admin_init', [Setup::class, 'start_session']);
 // On ajoute la méthode qui va s'executer lors de l'activation du plugin

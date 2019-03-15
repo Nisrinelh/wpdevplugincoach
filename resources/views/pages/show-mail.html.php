@@ -25,7 +25,7 @@
                 </div>
             </div>
             <a href="<?php menu_page_url('mail-client'); ?>" class="button button-primary">retour</a>
-            <form action="<?php menu_page_url('mail-client'); ?>&action=delete" method="post">
+            <form action="<?php get_site_url(); ?>?action=mail-delete" method="post">
                 <input type="hidden" name="id" value="<?= $mail->id; ?>">
                 <button type="submit" class="button">supprimer</button>
             </form>
