@@ -60,4 +60,34 @@ class MailController
     // la fonction wp_safe_redirect redirige vers une url. La fonction wp_get_referer renvoi vers la page d'ou la requête a été envoyé.
     wp_safe_redirect(wp_get_referer());
   }
+
+  /**
+   * Affiche la page principal
+   *
+   * @return void
+   */
+  public static function index()
+  {
+    // on va chercher toute les entrés de la table dont le model mail s'occupe et on inverse l'ordre afin d'avoir le plus récent en premier.
+    $mails = array_reverse(Mail::all());
+    $old = [];
+    if (isset($_SESSION['old']) && isset($_SESSION['notice']['error'])) { // correction pour afficher valeur que quand error
+      $old = $_SESSION['old'];
+      unset($_SESSION['old']);
+    }
+    view('pages/send-mail', compact('old', 'mails'));
+  }
+
+  /**
+   * Affiche une entré en particulier
+   *
+   * @return void
+   */
+  public static function show()
+  {
+    $id = $_GET['id'];
+    $mail = Mail::find($id);
+
+    view('pages/show-mail', compact('mail'));
+  }
 }
