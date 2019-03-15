@@ -29,11 +29,26 @@ class SendMail
   }
 
   /**
-   * Affichage de la page
+   * Fonction qui redirige vers la bonne méthode
    *
    * @return void
    */
   public static function render()
+  {
+    /**
+     * on fait un refactoring afin que la méthode render renvoi vers la bonne méthode en fonction de l'action
+     */
+    // on défini une valeur par défaut pour $action qui est index et qui correspondra à la méthode à utiliser
+    $action = isset($_GET["action"]) ? $_GET["action"] : "index";
+    call_user_func([self::class, $action]);
+  }
+
+  /**
+   * Affiche la page principal
+   *
+   * @return void
+   */
+  public static function index()
   {
     // on va chercher toute les entrés de la table dont le model mail s'occupe et on inverse l'ordre afin d'avoir le plus récent en premier.
     $mails = array_reverse(Mail::all());
@@ -43,5 +58,18 @@ class SendMail
       unset($_SESSION['old']);
     }
     view('pages/send-mail', compact('old', 'mails'));
+  }
+
+  /**
+   * Affiche une entré en particulier
+   *
+   * @return void
+   */
+  public static function show()
+  {
+    $id = $_GET['id'];
+    $mail = Mail::find($id);
+
+    view('pages/show-mail', compact('mail'));
   }
 }

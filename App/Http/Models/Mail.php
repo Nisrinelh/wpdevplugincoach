@@ -52,11 +52,30 @@ class Mail
     );
   }
 
+  /**
+   * Fonction qui va chercher toutes les entrées de la table
+   *
+   * @return array
+   */
   public static function all()
   {
     global $wpdb;
     $table = self::$table;
     $query = "SELECT * FROM $table";
     return $wpdb->get_results($query);
+  }
+
+  /**
+   * fonction qui va cherche l'entré de la table qui à l'id correspondant
+   *
+   * @param [type] $id
+   * @return object
+   */
+  public static function find($id)
+  {
+    global $wpdb;
+    $table = self::$table;
+    $query = "SELECT * FROM $table WHERE id = $id";
+    return $wpdb->get_row($query);
   }
 }

@@ -41,6 +41,7 @@
             <div class="postbox ">
                 <div class="inside">
                     <strong>client : </strong> <?= $mail->email; ?>
+                    <a href="<?php menu_page_url('mail-client'); ?>&action=show&id=<?= $mail->id; ?>" class="btn btn-primaty">voir</a>
                 </div>
             </div>
             <?php endforeach; ?>
