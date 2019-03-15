@@ -44,16 +44,8 @@ class Mail
     // nous utilisons à nous la méthode insert de l'objet $wpdb;
     return $wpdb->insert(
       $wpdb->prefix . 'rat_mail', // le nom de la table
-      // ici nous affichons toutes les colonnes avec leur valeur sous forme d'objet.
-      [
-        'id' => $this->id,
-        'userid' => $this->userid,
-        'lastname' => $this->lastname,
-        'firstname' => $this->firstname,
-        'email' => $this->email,
-        'content' => $this->content,
-        'created_at' => $this->created_at
-      ]
+      //Nous appelons une fonction php pure qui transforme toutes les propriétés de notre objet en tableau pour simplifier l'écriture
+      get_object_vars($this)
 
     );
   }
