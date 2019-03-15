@@ -20,9 +20,15 @@
                     <div>
                         <strong>Message: </strong> <br> <?= $mail->content; ?>
                     </div>
+                    <div>
+                    </div>
                 </div>
             </div>
             <a href="<?php menu_page_url('mail-client'); ?>" class="button button-primary">retour</a>
+            <form action="<?php menu_page_url('mail-client'); ?>&action=delete" method="post">
+                <input type="hidden" name="id" value="<?= $mail->id; ?>">
+                <button type="submit" class="button">supprimer</button>
+            </form>
         </div>
     </div>
 </div> 

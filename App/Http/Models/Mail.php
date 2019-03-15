@@ -78,4 +78,15 @@ class Mail
     $query = "SELECT * FROM $table WHERE id = $id";
     return $wpdb->get_row($query);
   }
+
+  public static function delete($id)
+  {
+    global $wpdb;
+    return $wpdb->delete(
+      self::$table,
+      [
+        'id' => $id
+      ]
+    );
+  }
 }

@@ -90,4 +90,28 @@ class MailController
 
     view('pages/show-mail', compact('mail'));
   }
+
+  /**
+   * Supprime une entré de la table
+   *
+   * @return void
+   */
+  public static function delete()
+  {
+    $id = $_POST['id'];
+    if (Mail::delete($id)) {
+
+      $_SESSION['notice'] = [
+        'status' => 'success',
+        'message' => 'Le mail a bien été supprimé'
+      ];
+      self::index();
+    } else {
+      $_SESSION['notice'] = [
+        'status' => 'error',
+        'message' => 'un Problème est survenu, veuillez rééssayer'
+      ];
+      wp_redirect(wp_get_referer());
+    }
+  }
 }
