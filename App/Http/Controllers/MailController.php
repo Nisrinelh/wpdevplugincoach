@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Request;
+use App\Http\Models\Mail;
 
 class MailController
 {
@@ -31,20 +32,18 @@ class MailController
     $message = sanitize_textarea_field($_POST['message']);
 
     // Nous allons également sauvegarder en base de donnée les mails que nous allons envoyer.
+    // Refactoring pour apprendre et utiliser les models. Seul les models peuvent intéragir avec la base de donnée.
+    // on instancie la class Mail et on rempli les valeurs dans les propriétés.
+    $mail = new Mail();
 
-    global $wpdb;
-    // Nous utilisons une fonction pour insérer dans la db. https://developer.wordpress.org/reference/classes/wpdb/insert/
-    $wpdb->insert(
-      $wpdb->prefix . 'rat_mail', // premier argument est le nom de la table. c'est la deuxième fois que l'on écrit ce nom. Il serait bon de faire un refactoring et d'utiliser une constance à la place. Nous le ferons plus tard.
-      [ // Deuxième paramêtre est un tableau dont la clé est le nom de la colonne dans la table et la valeur est la valeur à mettre dans la colonne
-        'userid' => get_current_user_id(),
-        'lastname' => $name,
-        'firstname' => $firstname,
-        'email' => $email,
-        'content' => $message,
-        'created_at' => current_time('mysql')
-      ]
-    );
+    $mail->userid = get_current_user_id();
+    $mail->lastname = $name;
+    $mail->firstname = $firstname;
+    $mail->email = $email;
+    $mail->content = $message;
+    // Sauvegarde du mail dans la base de donnée
+    $mail->save();
+
 
     // la fonction wordpress pour envoyer des mails https://developer.wordpress.org/reference/functions/wp_mail/
     if (wp_mail($email, 'Pour ' . $name . ' ' . $firstname, $message)) {
