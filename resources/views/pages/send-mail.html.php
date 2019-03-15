@@ -4,33 +4,46 @@
 
     <!-- Ici nous ajoutons une partie d'html afin qui prendra en charge les notifications. On met cela dans un fichier à part afin de pouvoir réutiliser les notifications ailleurs -->
     <?php view('partials/notice'); ?>
-    <p>Ce formulaire vous permet de contacter vos clients pour leur réservation.</p>
-    <!-- Vous pouvez trouver la documentation sur comment bien intégrer votre html à cette adresse https://dotorgstyleguide.wordpress.com/outline/forms/ -->
-    <form action="<?= get_admin_url() . '/?action=send-mail'; ?>" method="post">
-        <!-- Cette fonction permet un sécurité pour vérifier que le formulaire est authentique -->
-        <?php wp_nonce_field('send-mail'); ?>
-        <table class="form-table">
-            <tr>
-                <th>e-mail</th>
-                <td><input type="email" name="email" id="email" value="<?= $old['email']; ?>"></td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td><input type="text" name="name" id="name" value="<?= $old['name']; ?>"></td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td><input type="text" name="firstname" id="firstname" value="<?= $old['firstname']; ?>"></td>
-            </tr>
-            <tr>
-                <th>Message</th>
-                <td><textarea name="message" id="message" cols="30" rows="10"><?= $old['message']; ?></textarea></td>
-            </tr>
-            <tr>
-                <th></th>
-                <td><button type="submit" class="button-primary">Envoyer</button></td>
-            </tr>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>Ce formulaire vous permet de contacter vos clients pour leur réservation.</p>
+            <!-- Vous pouvez trouver la documentation sur comment bien intégrer votre html à cette adresse https://dotorgstyleguide.wordpress.com/outline/forms/ -->
+            <form action="<?= get_admin_url() . '?action=send-mail'; ?>" method="post">
+                <!-- Cette fonction permet un sécurité pour vérifier que le formulaire est authentique -->
+                <?php wp_nonce_field('send-mail'); ?>
+                <table class="form-table">
+                    <tr>
+                        <th>e-mail</th>
+                        <td><input type="email" name="email" id="email" value="<?= $old['email']; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td><input type="text" name="name" id="name" value="<?= $old['name']; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Prénom</th>
+                        <td><input type="text" name="firstname" id="firstname" value="<?= $old['firstname']; ?>"></td>
+                    </tr>
+                    <tr>
+                        <th>Message</th>
+                        <td><textarea name="message" id="message" cols="30" rows="10"><?= $old['message']; ?></textarea></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><button type="submit" class="button-primary">Envoyer</button></td>
+                    </tr>
 
-        </table>
-    </form>
+                </table>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <?php foreach ($mails as $mail) : ?>
+            <div class="postbox ">
+                <div class="inside">
+                    <strong>client : </strong> <?= $mail->email; ?>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 </div> 

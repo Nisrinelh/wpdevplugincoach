@@ -2,6 +2,9 @@
 
 namespace App\Features\Pages;
 
+use App\Http\Models\Mail;
+
+
 
 
 class SendMail
@@ -32,10 +35,12 @@ class SendMail
    */
   public static function render()
   {
-    if (isset($_SESSION['old'])) {
+    $mails = Mail::all();
+    $old = [];
+    if (isset($_SESSION['old']) && isset($_SESSION['notice']['error'])) { // correction pour afficher valeur que quand error
       $old = $_SESSION['old'];
       unset($_SESSION['old']);
     }
-    view('pages/send-mail', compact('old'));
+    view('pages/send-mail', compact('old', 'mails'));
   }
 }

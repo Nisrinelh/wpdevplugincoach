@@ -24,6 +24,8 @@ class Mail
 
   public $created_at;
 
+  protected static $table = 'wp_rat_mail';
+
   /**
    * Fonction qui est appelé lors de l'instance d'un objet.
    */
@@ -48,5 +50,13 @@ class Mail
       get_object_vars($this)
 
     );
+  }
+
+  public static function all()
+  {
+    global $wpdb;
+    $table = self::$table;
+    $query = "SELECT * FROM $table";
+    return $wpdb->get_results($query);
   }
 }
