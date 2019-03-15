@@ -35,7 +35,8 @@ class SendMail
    */
   public static function render()
   {
-    $mails = Mail::all();
+    // on va chercher toute les entrés de la table dont le model mail s'occupe et on inverse l'ordre afin d'avoir le plus récent en premier.
+    $mails = array_reverse(Mail::all());
     $old = [];
     if (isset($_SESSION['old']) && isset($_SESSION['notice']['error'])) { // correction pour afficher valeur que quand error
       $old = $_SESSION['old'];
