@@ -25,11 +25,15 @@
                 </div>
             </div>
             <a href="<?php menu_page_url('mail-client'); ?>" class="button button-primary">retour</a>
+            <?php if (current_user_can('edit_email')) : ?>
             <a href="<?php menu_page_url('mail-client'); ?>&action=edit&id=<?= $mail->id; ?>" class="button bg-warning text-white">editer</a>
+            <?php endif; ?>
+            <?php if (current_user_can('delete_email')) : ?>
             <form class="form-inline d-inline-block" action="<?php get_site_url(); ?>?action=mail-delete" method="post">
                 <input type="hidden" name="id" value="<?= $mail->id; ?>">
                 <button type="submit" class="button">supprimer</button>
             </form>
+            <?php endif; ?>
         </div>
     </div>
 </div> 
