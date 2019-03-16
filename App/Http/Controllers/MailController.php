@@ -86,6 +86,19 @@ class MailController
   }
 
   /**
+   * Affiche un formulaire pour éditer le mail
+   *
+   * @return void
+   */
+  public static function edit()
+  {
+    $id = $_GET['id'];
+    $mail = Mail::find($id);
+
+    view('pages/edit-mail', compact('mail'));
+  }
+
+  /**
    * Supprime une entré de la table
    *
    * @return void
