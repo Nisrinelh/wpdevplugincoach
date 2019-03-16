@@ -65,7 +65,7 @@ class MailController
     // on va chercher toute les entrés de la table dont le model mail s'occupe et on inverse l'ordre afin d'avoir le plus récent en premier.
     $mails = array_reverse(Mail::all());
     $old = [];
-    if (isset($_SESSION['old']) && isset($_SESSION['notice']['error'])) { // correction pour afficher valeur que quand error
+    if (isset($_SESSION['old']) && ($_SESSION['notice']['status'] == 'error')) { // correction pour afficher valeur que quand error
       $old = $_SESSION['old'];
       unset($_SESSION['old']);
     }
