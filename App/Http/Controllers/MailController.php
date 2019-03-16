@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Request;
 use App\Http\Models\Mail;
+use App\Http\Middlewares\CheckPermission;
 
 class MailController
 {
@@ -14,6 +15,8 @@ class MailController
    */
   public static function send()
   {
+    // Vérification des permissions
+    CheckPermission::check('create_email');
     // on vérifie la sécurité pour voir si le formulaire est bien authentique
     if (!wp_verify_nonce($_POST['_wpnonce'], 'send-mail')) {
       return;
@@ -62,6 +65,8 @@ class MailController
    */
   public static function index()
   {
+    // Vérification des permissions
+    CheckPermission::check('read_email');
     // on va chercher toute les entrés de la table dont le model mail s'occupe et on inverse l'ordre afin d'avoir le plus récent en premier.
     $mails = array_reverse(Mail::all());
     $old = [];
@@ -79,6 +84,9 @@ class MailController
    */
   public static function show()
   {
+    // Vérification des permissions
+    CheckPermission::check('show_email');
+
     $id = $_GET['id'];
     $mail = Mail::find($id);
 
@@ -92,6 +100,8 @@ class MailController
    */
   public static function edit()
   {
+    // Vérification des permissions
+    CheckPermission::check('edit_email');
     $id = $_GET['id'];
     $mail = Mail::find($id);
 
@@ -100,6 +110,8 @@ class MailController
 
   public static function update()
   {
+    // Vérification des permissions
+    CheckPermission::check('edit_email');
     // on vérifie la sécurité pour voir si le formulaire est bien authentique
     if (!wp_verify_nonce($_POST['_wpnonce'], 'edit-mail')) {
       return;
@@ -144,6 +156,8 @@ class MailController
    */
   public static function delete()
   {
+    // Vérification des permissions
+    CheckPermission::check('delete');
     $id = $_POST['id'];
     if (Mail::delete($id)) {
 
