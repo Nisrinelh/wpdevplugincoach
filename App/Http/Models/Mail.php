@@ -76,7 +76,29 @@ class Mail
     global $wpdb;
     $table = self::$table;
     $query = "SELECT * FROM $table WHERE id = $id";
-    return $wpdb->get_row($query);
+    // nous ajoutons ces lignes afin de ne pas renvoyé un simple objet mais bien un objet Mail
+    $objet = $wpdb->get_row($query);
+    $mail = new Mail();
+    foreach ($objet as $key => $value) {
+      $mail->$key = $value;
+    }
+
+    return $mail;
+  }
+
+  /**
+   * fonction qui va mettre à jour l'entré dans la base de donnée
+   *
+   * @return boolean
+   */
+  public function update()
+  {
+    global $wpdb;
+    return $wpdb->update(
+      self::$table,
+      get_object_vars($this),
+      ['id' => $this->id]
+    );
   }
 
   public static function delete($id)

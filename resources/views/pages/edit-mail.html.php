@@ -9,6 +9,8 @@
             <div class="postbox">
                 <div class="inside">
                     <form action="<?php get_site_url(); ?>?action=mail-update" method="post">
+                        <?php wp_nonce_field('edit-mail'); ?>
+                        <input type="hidden" name="id" value="<?= $mail->id; ?>">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" value="<?= $mail->email; ?>">
