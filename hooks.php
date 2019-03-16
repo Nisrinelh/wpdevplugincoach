@@ -11,6 +11,7 @@ use App\Features\Pages\Page;
 use App\Setup;
 use App\Http\Controllers\MailController;
 use App\Database\Database;
+use App\Features\Roles\Role;
 
 // Ajout d'un listener à l'event "init". le listener est la méthode "register" de la class RecipePostType.
 
@@ -40,5 +41,7 @@ add_action('admin_init', [Setup::class, 'start_session']);
 // On ajoute la méthode qui va s'executer lors de l'activation du plugin
 // Cette fonction ne s'active que lors de l'activation du plugin https://developer.wordpress.org/reference/functions/register_activation_hook/
 register_activation_hook(__DIR__ . '/ratatouille.php', [Database::class, 'init']);
+// Nous ajoutons des roles à l'activation du plugin.
+register_activation_hook(__DIR__ . '/ratatouille.php', [Role::class, 'init']);
 // Ajout d'une css pour l'admin
 add_action('admin_enqueue_scripts', [Setup::class, 'enqueue_scripts']);
