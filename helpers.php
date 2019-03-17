@@ -74,3 +74,14 @@ function delete_post_metas($post_id)
     delete_post_meta($post_id, $key);
   }
 }
+
+/**
+ * chargement d'un fichier de configuration pour renvoyer le tableau qu'il contient
+ *
+ * @param [type] $path
+ * @return void
+ */
+function config($path)
+{
+  return include(RAT_CONFIG_DIR . $path . '.php');
+}

@@ -43,7 +43,7 @@ class MailController
 
 
     // la fonction wordpress pour envoyer des mails https://developer.wordpress.org/reference/functions/wp_mail/
-    if (wp_mail($mail->email, 'Pour ' . $mail->name . ' ' . $mail->firstname, $mail->message)) {
+    if (wp_mail($mail->email, 'Pour ' . $mail->name . ' ' . $mail->firstname, $mail->content)) {
       $_SESSION['notice'] = [
         'status' => 'success',
         'message' => 'votre e-mail a bien été envoyé'

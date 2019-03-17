@@ -1,27 +1,19 @@
 <?php
-use App\Features\PostTypes\PostTypeRegister;
-use App\Features\PostTypes\RecipePostType;
-use App\Features\MetaBoxes\RecipeDetailsMetabox;
-use App\Features\Taxonomies\TaxonomyRegister;
-use App\Features\Widgets\Widget;
+
+use App\Setup;
+
+/**
+ * Dans ce fichier nous mettons tout les hooks (action et filter) qui pourrait-être utiliser dans l'application
+ */
 
 return [
-/**
- * Ajout des hooks action
- */
+  /**
+   * Ajout des hooks action
+   */
   'actions' => [
-    // Ajout d'un listener à l'event "init". le listener est la méthode "register" de la class RecipePostType.
-    ['init', [PostTypeRegister::class, 'register']],
-    //Ajout d'un listener à l'event "init" pour enregistrer une taxonomy
-    ['init', [TaxonomyRegister::class, 'register']],
-    // Ajout d'une Metabox pour le postType recipe
-    ['add_meta_boxes_recipe', [RecipeDetailsMetabox::class, 'add_meta_box']],
-    // Ajout d'une action de sauvegarde lors de la sauvegarde d'un post type recipe
-    ['save_post_' . RecipePostType::$slug, [RecipeDetailsMetabox::class, 'save']],
-    // Ajout d'une action pour supprimé toutes les metas d'un post lorsque ce post est supprimé
-    ['delete_post', 'delete_post_metas'],
-    // Ajout d'une action pour enregistrer les widgets
-    ['widgets_init', [Widget::class, 'init']],
+    ['admin_init', [Setup::class, 'start_session']],
+    ['admin_enqueue_scripts', [Setup::class, 'enqueue_scripts']],
+    ['phpmailer_init', [Setup::class, 'mailtrap']]
   ],
 
 
