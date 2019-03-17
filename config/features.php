@@ -5,10 +5,6 @@ use App\Features\MetaBoxes\RecipeDetailsMetabox;
 use App\Features\Widgets\Widget;
 use App\Features\Sections\Section;
 use App\Features\Pages\Page;
-use App\Setup;
-use App\Http\Controllers\MailController;
-use App\Database\Database;
-use App\Features\Roles\Role;
 
 /**
  * Ce fichier renvoi un tableau avec tout les features (éléments propre à wordpress). Ce tableau est constituer de tableau qui contienne les paramêtres qui seront passé à une fonction 'add_action'.
